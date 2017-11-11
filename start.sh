@@ -1,6 +1,5 @@
 #!/bin/bash
 
-echo Running migrations and starting Gunicorn...
-exec gunicorn twitter_lite.wsgi:application \
-    --bind 0.0.0.0:8000 \
+exec gunicorn twitter_site.wsgi:application \
+    --bind 0.0.0.0:${SERVER_PORT} \
     --workers 3
