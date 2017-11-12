@@ -49,5 +49,14 @@ class ReTweet(models.Model):
     username = models.CharField(max_length=64)
     timestamp = models.DateTimeField(auto_now_add=True)
 
+    def as_dict(self):
+        return dict(
+            content=self.tweet.content,
+            retweet_user=self.username,
+            tweet_id=self.tweet.id,
+            tweet_user=self.tweet.username,
+            timestamp=self.timestamp,
+        )
+
     def __str__(self):
         return '{} retweeted "{}"'.format(self.username, self.tweet)

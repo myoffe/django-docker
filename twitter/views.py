@@ -1,7 +1,7 @@
 import json
 
 from django.http import JsonResponse, HttpResponse
-from django.views.decorators.http import require_http_methods, require_POST
+from django.views.decorators.http import require_http_methods, require_POST, require_GET
 from django.views.decorators.csrf import csrf_exempt
 
 from .models import Tweet, ReTweet, Like
@@ -26,16 +26,23 @@ def likes(request, tweet_id):
 
 @require_POST
 @csrf_exempt
-def retweets(request, tweet_id):
+def retweet(request, tweet_id):
     data = json.loads(request.body)
     tweet = fetch_tweet(tweet_id)
     tweet.retweet_set.create(username=data['username'])
     return success()
 
 
+@require_GET
+@csrf_exempt
+def retweets(request):
+    retweets = ReTweet.objects.all()
+    return json_response([x.as_dict() for x in retweets])
+
+
 def list_tweets(request):
     tweets = Tweet.objects.all()
-    return json_response([t.as_dict() for t in tweets])
+    return json_response([x.as_dict() for x in tweets])
 
 
 def create_tweet(request):
