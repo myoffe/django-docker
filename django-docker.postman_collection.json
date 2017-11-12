@@ -1,0 +1,159 @@
+{
+	"info": {
+		"name": "Twitter Docker Django",
+		"_postman_id": "4544e4b2-9d6a-4b3d-e70a-f0c1f87fd93c",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "list tweets",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"bob\",\n\t\"content\": \"bob has a very large brain\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/tweets",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"tweets"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "list retweets",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"bob\",\n\t\"content\": \"bob has a very large brain\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/retweets",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"retweets"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "new tweet",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"john\",\n\t\"content\": \"peace and love\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/tweets",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"tweets"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "like",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"danny\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/tweets/1/likes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"tweets",
+						"1",
+						"likes"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "retweet",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"danny\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/tweets/1/retweet",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"tweets",
+						"1",
+						"retweet"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
