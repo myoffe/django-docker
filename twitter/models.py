@@ -9,12 +9,20 @@ class Tweet(models.Model):
     username = models.CharField(max_length=64)
     timestamp = models.DateTimeField(auto_now_add=True)
 
+    def likes_count(self):
+        return self.like_set.count()
+
+    def retweets_count(self):
+        return self.retweet_set.count()
+
     def as_dict(self):
         return dict(
             id=self.id,
             content=self.content,
             username=self.username,
             timestamp=self.timestamp,
+            likes_count=self.likes_count(),
+            retweets_count=self.retweets_count(),
         )
 
     def __str__(self):
