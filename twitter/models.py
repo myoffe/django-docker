@@ -29,6 +29,9 @@ class Like(models.Model):
     tweet = models.ForeignKey(Tweet, on_delete=models.CASCADE)
     timestamp = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return '{} liked "{}"'.format(self.username, self.tweet)
+
 
 class ReTweet(models.Model):
     class Meta:
@@ -37,3 +40,6 @@ class ReTweet(models.Model):
     tweet = models.ForeignKey(Tweet, on_delete=models.CASCADE)
     username = models.CharField(max_length=64)
     timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return '{} retweeted "{}"'.format(self.username, self.tweet)
