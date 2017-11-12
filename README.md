@@ -1,8 +1,5 @@
-# django-docker
-Example project of a Dockerized Django app
-
 To run the thing:
-`docker-compose up -d --build && docker-compose ps`
+`docker-compose up -d --build`
 
 ## Notes
 - To ease of testing the API, all views are `@csrf_exempt`
