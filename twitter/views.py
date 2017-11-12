@@ -19,16 +19,18 @@ def tweets(request):
 @csrf_exempt
 def likes(request, tweet_id):
     data = json.loads(request.body)
-    username = data['username']
-    tweet = Tweet.objects.get(id=tweet_id)
-    tweet.like_set.create(username=username)
+    tweet = fetch_tweet(tweet_id)
+    tweet.like_set.create(username=data['username'])
     return success()
 
 
 @require_POST
 @csrf_exempt
 def retweets(request, tweet_id):
-    pass
+    data = json.loads(request.body)
+    tweet = fetch_tweet(tweet_id)
+    tweet.retweet_set.create(username=data['username'])
+    return success()
 
 
 def list_tweets(request):
@@ -43,6 +45,10 @@ def create_tweet(request):
         content=data['content'],
     ).save()
     return success()
+
+
+def fetch_tweet(id):
+    return Tweet.objects.get(id=id)
 
 
 def json_response(obj):
