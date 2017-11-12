@@ -37,12 +37,12 @@ def retweet(request, tweet_id):
 @csrf_exempt
 def retweets(request):
     retweets = ReTweet.objects.all()
-    return json_response([x.as_dict() for x in retweets])
+    return json_response(as_dict_list(retweets))
 
 
 def list_tweets(request):
     tweets = Tweet.objects.all()
-    return json_response([x.as_dict() for x in tweets])
+    return json_response(as_dict_list(tweets))
 
 
 def create_tweet(request):
@@ -57,6 +57,8 @@ def create_tweet(request):
 def fetch_tweet(id):
     return Tweet.objects.get(id=id)
 
+def as_dict_list(coll):
+    return [item.as_dict() for item in coll]
 
 def json_response(obj):
     return JsonResponse(obj, safe=False)
