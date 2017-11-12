@@ -9,6 +9,7 @@ services:
 
   web:
     build: .
+    restart: always
     env_file: .env
     command: sh -c "./wait-for-postgres.sh ${DB_HOST} ${POSTGRES_DB} ${POSTGRES_USER} ${POSTGRES_PASSWORD} python manage.py migrate && ./start.sh"
     volumes:
